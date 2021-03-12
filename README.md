@@ -22,4 +22,4 @@
 ![](https://cdn.cooluc.com/openwrt/home.png)
 
 #### 服务
-![](https://cdn.cooluc.com/openwrt/menu.png)
+![](https://cdn.cooluc.com/openwrt/menu2.png)
