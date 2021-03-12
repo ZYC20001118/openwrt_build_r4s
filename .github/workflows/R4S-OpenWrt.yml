@@ -56,8 +56,8 @@ jobs:
       continue-on-error: true
       run: |
         df -h
-        curl -s https://www.cooluc.com/openwrt-5.10/build.sh > bash.sh
-        bash build.sh
+        curl -s https://www.cooluc.com/openwrt-5.10/build.sh > /home/runner/work/openwrt_build_r4s/bash.sh
+        bash /home/runner/work/openwrt_build_r4s/bash.sh
         echo $?
     - name: Assemble Artifact
       id: assemble_artifact
