@@ -8,6 +8,8 @@
 - 密码：无
 
 固件使用 nginx 作为默认web引擎，若要回退 uhttpd 请在终端执行以下操作：
+- opkg update
+- opkg install uhttpd uhttpd-mod-ubus
 - /etc/init.d/nginx stop
 - /etc/init.d/nginx disable
 - /etc/init.d/uhttpd enable
