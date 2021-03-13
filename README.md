@@ -2,7 +2,7 @@
 
 **本固件基于 [OpenWRT](https://github.com/openwrt/openwrt) 官方源码编译，默认使用 [Argon 主题](https://github.com/jerrykuku/luci-theme-argon)，固件内置一些常用插件，内核已切换 Linux 5.10 最新TAG。**
 
-**固件下载：[https://github.com/sbwml/openwrt_build_r4s/actions](https://github.com/sbwml/openwrt_build_r4s/actions)**
+**固件下载：[https://github.com/sbwml/openwrt_build_r4s/releases](https://github.com/sbwml/openwrt_build_r4s/releases)**
 
 默认参数
 - IP地址：192.168.1.1
