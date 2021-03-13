@@ -65,14 +65,8 @@ jobs:
         rm -rf ./FriendlyElec_NanoPi_R4S
         mkdir -p ./FriendlyElec_NanoPi_R4S/
         cp -a openwrt/bin/targets/rockchip/armv8/*.img.gz ./FriendlyElec_NanoPi_R4S/
-        zip -r artifact.zip ./FriendlyElec_NanoPi_R4S/
         release_tag="OpenWrt-NanoPi-R4S-$(date +%Y-%m-%d)"
         echo "##[set-output name=release_tag;]$release_tag"
-    - name: Upload Artifact
-      uses: actions/upload-artifact@main
-      with:
-        name: ${{ steps.assemble_artifact.outputs.release_tag }}
-        path: ./artifact.zip
     - name: Create Release
       id: create_release
       uses: actions/create-release@main
@@ -84,13 +78,24 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Upload Release Asset
-      id: upload-release-asset
+    - name: Upload Release Asset Ext4
+      id: upload-release-asset-ext4
       uses: actions/upload-release-asset@main
       env:
         GITHUB_TOKEN: ${{ secrets.workflow_token }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-        asset_path: ./artifact.zip
-        asset_name: ${{ steps.assemble_artifact.outputs.release_tag }}.zip
-        asset_content_type: application/zip
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./FriendlyElec_NanoPi_R4S/openwrt-rockchip-armv8-friendlyarm_nanopi-r4s-ext4-sysupgrade.img.gz
+        asset_name: openwrt-rockchip-armv8-friendlyarm_nanopi-r4s-ext4-sysupgrade.img.gz
+        asset_content_type: application/gzip
+
+    - name: Upload Release Asset Squashfs
+      id: upload-release-asset-squashfs
+      uses: actions/upload-release-asset@main
+      env:
+        GITHUB_TOKEN: ${{ secrets.workflow_token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./FriendlyElec_NanoPi_R4S/openwrt-rockchip-armv8-friendlyarm_nanopi-r4s-squashfs-sysupgrade.img.gz
+        asset_name: openwrt-rockchip-armv8-friendlyarm_nanopi-r4s-squashfs-sysupgrade.img.gz
+        asset_content_type: application/gzip
