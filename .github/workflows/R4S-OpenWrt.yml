@@ -59,6 +59,12 @@ jobs:
         curl -s https://www.cooluc.com/openwrt-5.10/github-actions-build.sh > /home/runner/work/openwrt_build_r4s/bash.sh
         bash /home/runner/work/openwrt_build_r4s/bash.sh
         echo $?
+    - name: If Error
+      if: steps.compileopenwrt.outcome == 'failure'
+      run: |
+        cat openwrt/.config
+        echo '================================================================'
+        cd openwrt && make -j1 V=s
     - name: Assemble Artifact
       id: assemble_artifact
       run: |
